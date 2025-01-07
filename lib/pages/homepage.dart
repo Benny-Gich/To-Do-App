@@ -1,7 +1,5 @@
 // ignore_for_file: body_might_complete_normally_nullable
-
 import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:to_do/data/database.dart';
@@ -16,7 +14,20 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
-  final _mybox = Hive.openBox('MyBox');
+  final _mybox = Hive.box('MyBox');
+  TodoDatabase db = TodoDatabase();
+
+  @override
+//First Time running the app
+  void initState() {
+    if (_mybox.get("TODOLIST") == null) {
+      db.createInitialData();
+    } else {
+      db.loadData();
+    }
+    super.initState();
+  }
+
   //Text Editing controller
   final _controller = TextEditingController();
 
@@ -33,8 +44,8 @@ class _HomepageState extends State<Homepage> {
   void checkBoxChanged(bool? value, int index) {
     setState(() {
       db.toDoList[index][1] = !db.toDoList[index][1];
-      TodoDatabase db = TodoDatabase();
     });
+    db.updateDatabase();
   }
 
   //Add Task Method
@@ -47,12 +58,14 @@ class _HomepageState extends State<Homepage> {
               onCancel: () => Navigator.of(context).pop(),
               controller: _controller);
         });
+    db.updateDatabase();
   }
 
   void deleteTask(int index) {
     setState(() {
       db.toDoList.removeAt(index);
     });
+    db.updateDatabase();
   }
 
   @override

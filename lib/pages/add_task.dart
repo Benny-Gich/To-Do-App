@@ -27,6 +27,7 @@ class AddTask extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10.0),
               //Get USer Input
               child: TextField(
+                style: TextStyle(color: Colors.white),
                 controller: controller,
                 decoration: InputDecoration(
                   fillColor: Colors.white24,
