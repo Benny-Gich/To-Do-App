@@ -10,6 +10,9 @@ class DrawerButton extends StatelessWidget {
           Navigator.pop(context);
           Navigator.pushNamed(context, '/Homepage');
         },
-        icon: Icon(Icons.arrow_back_ios));
+        icon: Icon(
+          Icons.home,
+          color: Colors.white,
+        ));
   }
 }

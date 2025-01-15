@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do/data/database.dart';
 
 class Apptile extends StatelessWidget {
   final String imageiconpath;
@@ -17,14 +18,14 @@ class Apptile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15.0),
+      padding: const EdgeInsets.all(10.0),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Colors.lightGreen[100],
+          color: Colors.lightGreen[200],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(children: [
             Container(
               decoration: BoxDecoration(
@@ -55,7 +56,16 @@ class Apptile extends StatelessWidget {
                       ),
                     ],
                   ),
-                  icon
+                  Column(
+                    children: <Widget>[
+                      Text(
+                        '${TodoDatabase().toDoList.length}',
+                        style: TextStyle(
+                            fontSize: 15, fontStyle: FontStyle.normal),
+                      ),
+                    ],
+                  ),
+                  icon,
                 ],
               ),
             ),

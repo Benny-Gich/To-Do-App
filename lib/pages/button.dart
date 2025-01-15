@@ -2,21 +2,22 @@
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
-  final String buttonName;
+  final String iconImage;
+
   VoidCallback onPressed;
 
   Button({
     super.key,
-    required this.buttonName,
+    required this.iconImage,
     required this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
+    return IconButton(
+      icon: ImageIcon(AssetImage(iconImage)),
+      iconSize: 40,
       onPressed: onPressed,
-      color: Colors.lightGreen[200],
-      child: Text(buttonName),
     );
   }
 }

@@ -17,7 +17,7 @@ class AddTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Theme.of(context).colorScheme.primary,
+      backgroundColor: Theme.of(context).primaryColor,
       content: SizedBox(
         height: 200,
         width: 300,
@@ -39,7 +39,7 @@ class AddTask extends StatelessWidget {
                   hintMaxLines: 1,
                   focusColor: Colors.white,
                   hintStyle: TextStyle(
-                      color: Colors.white24,
+                      color: Colors.grey,
                       fontSize: 20,
                       fontStyle: FontStyle.normal),
                 ),
@@ -49,11 +49,17 @@ class AddTask extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Button(buttonName: "Save", onPressed: onSave),
-                SizedBox(width: 10),
-                Button(buttonName: "Cancel", onPressed: onCancel),
+                Button(
+                  onPressed: onSave,
+                  iconImage: 'icons/save.png',
+                ),
+                SizedBox(width: 20),
+                Button(
+                  onPressed: onCancel,
+                  iconImage: 'icons/cancel.png',
+                ),
               ],
-            )
+            ),
           ],
         ),
       ),

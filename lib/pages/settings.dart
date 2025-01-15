@@ -8,65 +8,72 @@ class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 20,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        iconTheme: IconThemeData(color: Colors.white),
+        centerTitle: true,
+        title: Text(
+          "Settings",
+          style: TextStyle(
+            fontSize: 25,
+            fontStyle: FontStyle.normal,
+            color: Colors.white,
           ),
-          Text(
-            "Settings",
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+        ),
+      ),
+      body: Container(
+        color: Colors.lightGreen[100],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 20,
             ),
-          ),
-          SizedBox(height: 10),
-          Text(
-            "ACCOUNT",
-            style: TextStyle(
-              fontSize: 10,
-              fontStyle: FontStyle.normal,
-              color: Colors.black,
-            ),
-          ),
-          SizedBox(height: 15),
-          ListTile(
-            leading: CircleAvatar(
-              radius: 25,
-              child: Image.asset('icons/office-man.png'),
-            ),
-            title: Text(
-              "Jack Wayne!",
-              style: TextStyle(
-                fontSize: 25,
-                fontStyle: FontStyle.normal,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            subtitle: Text(
-              "  Welcome back to your To-Do!",
+            SizedBox(height: 10),
+            Text(
+              "ACCOUNT",
               style: TextStyle(
                 fontSize: 10,
-                fontStyle: FontStyle.italic,
+                fontStyle: FontStyle.normal,
                 color: Colors.black,
               ),
             ),
-            trailing: IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.arrow_right),
+            SizedBox(height: 15),
+            ListTile(
+              leading: CircleAvatar(
+                radius: 25,
+                child: Image.asset('icons/office-man.png'),
+              ),
+              title: Text(
+                "Jack Wayne!",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontStyle: FontStyle.normal,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Text(
+                "  Welcome back to your To-Do!",
+                style: TextStyle(
+                  fontSize: 10,
+                  fontStyle: FontStyle.italic,
+                  color: Colors.black,
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.arrow_right),
+              ),
             ),
-          ),
-          SizedBox(height: 10),
-          Divider(
-            thickness: 0.3,
-            indent: 5,
-            endIndent: 5,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-        ],
+            SizedBox(height: 10),
+            Divider(
+              thickness: 0.3,
+              indent: 5,
+              endIndent: 5,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+          ],
+        ),
       ),
     );
   }
