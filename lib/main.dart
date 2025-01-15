@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:to_do/pages/apptile.dart';
 import 'package:to_do/pages/homepage.dart';
+import 'package:to_do/pages/more.dart';
+import 'package:to_do/pages/settings.dart';
 
 void main() async {
   //Initialize Hive
@@ -17,6 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/Homepage': (context) => Homepage(),
+        '/Settings': (context) => Settings(),
+        '/More': (context) => MorePage(),
+      },
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,

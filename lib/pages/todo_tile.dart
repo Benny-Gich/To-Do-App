@@ -8,6 +8,7 @@ class TodoTile extends StatelessWidget {
   final bool taskCompleted;
   Function(bool?)? onChanged;
   Function(BuildContext)? deleteFunction;
+
 // To_Do Tile
   TodoTile({
     super.key,
