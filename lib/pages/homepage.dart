@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:to_do/data/database.dart';
 import 'package:to_do/pages/add_task.dart';
-import 'package:to_do/pages/todo_tile.dart';
+import 'package:to_do/util/app_drawer.dart';
+import 'package:to_do/util/todo_tile.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -77,73 +78,66 @@ class _HomepageState extends State<Homepage> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(
           "TO-DO",
-          style: TextStyle(color: Colors.white, fontSize: 20),
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         centerTitle: true,
-        actions: [],
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.toggle_off_outlined),
+            iconSize: 30,
+          ),
+        ],
       ),
-      drawer: Drawer(
-        backgroundColor: Colors.lightGreen[100],
-        child: Column(
-          children: [
-            DrawerHeader(
-              child: CircleAvatar(
-                radius: 30,
-                child: Image.asset('icons/to-do-list.png'),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home,
-                  color: Theme.of(context).colorScheme.primary),
-              title: Text(
-                "All Notes",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
+      drawer: SafeArea(
+        child: Drawer(
+          backgroundColor: Colors.lightGreen[100],
+          child: Column(
+            children: [
+              DrawerHeader(
+                child: CircleAvatar(
+                  radius: 30,
+                  child: Image.asset('icons/to-do-list.png'),
                 ),
               ),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/Homepage');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings,
-                  color: Theme.of(context).colorScheme.primary),
-              title: Text(
-                "Settings",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+              AppDrawer(
+                Icon: Icon(Icons.home),
+                drawertitle: "Home",
+                Route: '/Homepage',
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '$Route');
+                },
               ),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/Settings');
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.more,
-                  color: Theme.of(context).colorScheme.primary),
-              title: Text(
-                "More",
-                style: TextStyle(
-                  fontSize: 22,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+              AppDrawer(
+                Icon: Icon(Icons.home),
+                drawertitle: "Settings",
+                Route: '/Settings',
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '$Route');
+                },
               ),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.pushNamed(context, '/More');
-              },
-            ),
-          ],
+              AppDrawer(
+                Icon: Icon(Icons.more),
+                drawertitle: "More",
+                Route: '/More',
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '$Route');
+                },
+              ),
+              AppDrawer(
+                Icon: Icon(Icons.recycling),
+                drawertitle: "Trash",
+                Route: '/Trash',
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '$Route');
+                },
+              ),
+            ],
+          ),
         ),
       ),
       body: ListView.builder(
@@ -152,7 +146,7 @@ class _HomepageState extends State<Homepage> {
           taskName: db.toDoList[index][0],
           taskCompleted: db.toDoList[index][1],
           onChanged: (value) => checkBoxChanged(true, index),
-          deleteFunction: (context) => deleteTask,
+          deleteFunction: (context) => deleteTask(index),
         ),
       ),
       floatingActionButton: FloatingActionButton(

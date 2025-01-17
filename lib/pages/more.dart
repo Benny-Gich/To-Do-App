@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_do/pages/apptile.dart';
+import 'package:to_do/util/apptile.dart';
 
 class MorePage extends StatelessWidget {
   const MorePage({super.key});
@@ -11,14 +11,7 @@ class MorePage extends StatelessWidget {
         iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: Theme.of(context).colorScheme.primary,
         centerTitle: true,
-        title: Text(
-          "More",
-          style: TextStyle(
-            fontSize: 25,
-            fontStyle: FontStyle.normal,
-            color: Colors.white,
-          ),
-        ),
+        title: Text("More", style: Theme.of(context).textTheme.titleMedium),
       ),
       body: Container(
         color: Colors.lightGreen[100],

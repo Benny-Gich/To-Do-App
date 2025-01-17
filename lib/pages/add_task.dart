@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:to_do/pages/button.dart';
+import 'package:to_do/util/button.dart';
 
 class AddTask extends StatelessWidget {
   AddTask(
@@ -27,7 +27,7 @@ class AddTask extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10.0),
               //Get USer Input
               child: TextField(
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.grey),
                 controller: controller,
                 decoration: InputDecoration(
                   fillColor: Colors.white24,
@@ -37,9 +37,9 @@ class AddTask extends StatelessWidget {
                   ),
                   hintText: "Add Task...",
                   hintMaxLines: 1,
-                  focusColor: Colors.white,
+                  focusColor: Colors.grey,
                   hintStyle: TextStyle(
-                      color: Colors.grey,
+                      color: Colors.white,
                       fontSize: 20,
                       fontStyle: FontStyle.normal),
                 ),
