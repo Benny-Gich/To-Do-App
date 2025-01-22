@@ -110,7 +110,7 @@ class _HomepageState extends State<Homepage> {
                 },
               ),
               AppDrawer(
-                Icon: Icon(Icons.home),
+                Icon: Icon(Icons.settings),
                 drawertitle: "Settings",
                 Route: '/Settings',
                 onTap: () {

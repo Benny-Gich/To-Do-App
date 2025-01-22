@@ -1,7 +1,8 @@
 // ignore_for_file: unnecessary_string_escapes
 
 import 'package:flutter/material.dart';
-import 'package:to_do/util/settings_tile.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do/util/provider.dart';
 
 class Settings extends StatelessWidget {
   const Settings({super.key});
@@ -63,17 +64,26 @@ class Settings extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
               ),
               SizedBox(height: 10),
-              SettingsTile(
-                  iconPath: "icons/themes.png",
-                  IconButton: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.toggle_off_outlined,
-                      size: 40,
+              Consumer<UiProvider>(
+                builder: (context, UiProvider notifier, child) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                  ),
-                  title: 'Appearance'),
-              SizedBox(height: 10),
+                    child: ListTile(
+                      leading: Icon(Icons.dark_mode),
+                      title: Text(
+                        'Dark Mode',
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                      trailing: Switch(
+                          value: notifier.isDark,
+                          onChanged: (value) => notifier.changeTheme()),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -81,3 +91,16 @@ class Settings extends StatelessWidget {
     );
   }
 }
+
+              //SettingsTile(
+                  //iconPath: "icons/themes.png",
+                  //IconButton: IconButton(
+                    //onPressed: () {},
+                    //icon: Icon(
+                      //Icons.toggle_off_outlined,
+                      //size: 40,
+                    //),
+                  //),
+                //  title: 'Appearance'),
+              //SizedBox(height: 10),
+            //],

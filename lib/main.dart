@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do/pages/homepage.dart';
 import 'package:to_do/pages/more.dart';
 import 'package:to_do/pages/settings.dart';
 import 'package:to_do/pages/trash.dart';
-import 'package:to_do/util/theme.dart';
+import 'package:to_do/util/provider.dart';
 
 void main() async {
   //Initialize Hive
   await Hive.initFlutter();
 
   var box = await Hive.openBox('MyBox');
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -19,34 +21,46 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        '/Homepage': (context) => Homepage(),
-        '/Settings': (context) => Settings(),
-        '/More': (context) => MorePage(),
-        '/Trash': (context) => Trash(),
-      },
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        primaryColor: Colors.lightGreen[200],
-        textTheme: TextTheme(
-          titleMedium: TextStyle(
-            fontStyle: FontStyle.normal,
-            fontSize: 25,
-            color: Colors.white,
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => UiProvider()..init(),
+      child:
+          Consumer<UiProvider>(builder: (context, UiProvider notifier, child) {
+        return MaterialApp(
+          routes: {
+            '/Homepage': (context) => Homepage(),
+            '/Settings': (context) => Settings(),
+            '/More': (context) => MorePage(),
+            '/Trash': (context) => Trash(),
+          },
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+            primaryColor: Colors.lightGreen[200],
+            textTheme: TextTheme(
+              titleMedium: TextStyle(
+                fontStyle: FontStyle.normal,
+                fontSize: 25,
+                color: Colors.white,
+              ),
+              bodyMedium: TextStyle(
+                fontStyle: FontStyle.normal,
+                fontSize: 22,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+              bodySmall: TextStyle(
+                  fontStyle: FontStyle.normal,
+                  fontSize: 20,
+                  color: Colors.black),
+            ),
           ),
-          bodyMedium: TextStyle(
-            fontStyle: FontStyle.normal,
-            fontSize: 22,
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
-          bodySmall: TextStyle(
-              fontStyle: FontStyle.normal, fontSize: 20, color: Colors.black),
-        ),
-      ),
-      home: Homepage(),
-      debugShowCheckedModeBanner: false,
+          home: Homepage(),
+          debugShowCheckedModeBanner: false,
+
+          // Custome themes applied
+          themeMode: notifier.isDark ? ThemeMode.dark : ThemeMode.light,
+          darkTheme: notifier.isDark ? notifier.darkTheme : notifier.lightTheme,
+        );
+      }),
     );
   }
 }
