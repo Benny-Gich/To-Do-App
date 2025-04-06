@@ -71,27 +71,28 @@ class _HomepageState extends State<Homepage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Colors.lightGreen[100],
+      //backgroundColor: Colors.lightGreen[100],
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        //iconTheme: IconThemeData(color: Colors.white),
+        //backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(
           "TO-DO",
-          style: Theme.of(context).textTheme.titleMedium,
+          //style: Theme.textTheme.bodyMedium,
         ),
         centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.toggle_off_outlined),
+            icon: Icon(Icons.logout),
             iconSize: 30,
           ),
         ],
       ),
       drawer: SafeArea(
         child: Drawer(
-          backgroundColor: Colors.lightGreen[100],
+          //backgroundColor: Colors.lightGreen[100],
           child: Column(
             children: [
               DrawerHeader(

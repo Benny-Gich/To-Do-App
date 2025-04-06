@@ -9,83 +9,81 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        iconTheme: IconThemeData(color: Colors.white),
+        // backgroundColor: Theme.of(context).colorScheme.primary,
+        // iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
         title: Text(
           "Settings",
-          style: Theme.of(context).textTheme.titleMedium,
+          // style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
-      body: Container(
-        color: Colors.lightGreen[100],
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 10),
-              Text(
-                "ACCOUNT",
-                style: TextStyle(
-                  fontSize: 10,
-                  fontStyle: FontStyle.normal,
-                  color: Colors.black,
-                ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 10),
+            Text(
+              "ACCOUNT",
+              // style: TextStyle(
+              //   fontSize: 10,
+              //   fontStyle: FontStyle.normal,
+              //   color: Colors.black,
+              // ),
+            ),
+            SizedBox(height: 15),
+            ListTile(
+              leading: CircleAvatar(
+                radius: 25,
+                child: Image.asset('icons/office-man.png'),
               ),
-              SizedBox(height: 15),
-              ListTile(
-                leading: CircleAvatar(
-                  radius: 25,
-                  child: Image.asset('icons/office-man.png'),
-                ),
-                title: Text("Jack Wayne!",
-                    style: Theme.of(context).textTheme.bodyMedium),
-                subtitle: Text(
-                  "  Welcome back to your To-Do!",
-                  style: TextStyle(
-                    fontSize: 10,
-                    fontStyle: FontStyle.italic,
-                    color: Colors.black,
+              title: Text(
+                "Jack Wayne!",
+                // style: theme.textTheme.bodyMedium,
+                // style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              subtitle: Text(
+                "Welcome back to your To-Do!",
+                // style: theme.textTheme.labelSmall,
+                // style: TextStyle(
+                //   fontSize: 10,
+                //   fontStyle: FontStyle.italic,
+                //   color: Colors.black,
+                // ),
+              ),
+              trailing: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.arrow_right),
+              ),
+            ),
+            SizedBox(height: 10),
+            Divider(
+              thickness: 0.3,
+              indent: 5,
+              endIndent: 5,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            SizedBox(height: 10),
+            Consumer<UiProvider>(
+              builder: (context, UiProvider notifier, child) {
+                return ListTile(
+                  leading: Icon(Icons.dark_mode),
+                  //tileColor: theme.colorScheme.primary,
+                  title: Text(
+                    'Dark Mode',
+                    // style: Theme.of(context).textTheme.bodySmall,
                   ),
-                ),
-                trailing: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.arrow_right),
-                ),
-              ),
-              SizedBox(height: 10),
-              Divider(
-                thickness: 0.3,
-                indent: 5,
-                endIndent: 5,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              SizedBox(height: 10),
-              Consumer<UiProvider>(
-                builder: (context, UiProvider notifier, child) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: ListTile(
-                      leading: Icon(Icons.dark_mode),
-                      title: Text(
-                        'Dark Mode',
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                      trailing: Switch(
-                          value: notifier.isDark,
-                          onChanged: (value) => notifier.changeTheme()),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
+                  trailing: Switch(
+                    value: notifier.isDark,
+                    onChanged: (value) => notifier.changeTheme(),
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

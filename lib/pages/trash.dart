@@ -7,8 +7,8 @@ class Trash extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        iconTheme: IconThemeData(color: Colors.white),
+        //backgroundColor: Theme.of(context).colorScheme.primary,
+        //iconTheme: IconThemeData(color: Colors.white),
         title: Text(
           "Trash",
           style: Theme.of(context).textTheme.titleMedium,
@@ -25,8 +25,8 @@ class Trash extends StatelessWidget {
         ],
       ),
       body: Scaffold(
-        backgroundColor: Colors.lightGreen[100],
-      ),
+          //backgroundColor: Colors.lightGreen[100],
+          ),
     );
   }
 }

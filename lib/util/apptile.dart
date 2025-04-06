@@ -22,7 +22,7 @@ class Apptile extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Colors.lightGreen[200],
+          color: Theme.of(context).colorScheme.primary,
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
